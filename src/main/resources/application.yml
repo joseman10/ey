@@ -1,0 +1,78 @@
+﻿spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: ey
+  cloud:
+    config:
+      name: ey
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+  profiles:
+    active: dev
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-others: false
+  datasource:
+    url: jdbc:h2:mem:mydb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        validator:
+          apply_to_ddl: false
+
+info:
+  project:
+    name: Mantenimiento de Usuario
+    description: Microservicio de mantenimiento de los usurios
+    version: 1.0.0
+
+application:
+  client:
+    api:
+      path: "/channel/v1"
+
+  parameter:
+    message:
+      correcto: 'Ejecución correcta.'
+      errorGenerico: 'Ocurrió un error inesperado.'
+
+security:
+  jwt:
+    token:
+      secret-key: ey-4381dc2ab14285160c808659aee005d51255add7264b318d07c7417292c7442c-sy
+      expire-length: 300000
+
+logging:
+  level:
+    org:
+      hibernate:
+        type: trace
+        SQL: DEBUG
+
+server:
+  port: 8090
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include=*:
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui-custom.html
+    operationsSorter: method
+  api-docs:
+    path: /api-docs
+  version: v1
